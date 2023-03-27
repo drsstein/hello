@@ -1,0 +1,61 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: pythonmlnotebookgpu
+  # TODO: update this value to your project name, typically <username>project
+  namespace: sebastiansproject
+spec:
+  replicas: 1
+  strategy:
+    resources: {}
+  template:
+    metadata:
+      labels:
+        app: pythonMLNotebook
+        deploymentconfig: pythonMLNotebookGPU
+    spec:
+      nodeSelector:
+        #node-role.ida/gputitan: "true"
+        # node-role.ida/gpu2080ti: "true"
+        node-role.ida/gpua6000: "true"
+      containers:
+      - name: tensorflow
+        image: tensorflow/tensorflow:latest-gpu-jupyter
+        resources:
+          requests:
+            cpu: "32"
+            memory: "148Gi"
+            nvidia.com/gpu: 1
+          limits:
+            cpu: "32"
+            memory: "148Gi"
+            nvidia.com/gpu: 1
+        command:
+          - 'jupyter'
+        args:
+          - 'notebook'
+          - '--no-browser'
+          - '--ip=0.0.0.0'
+          - '--NotebookApp.token='
+          - '--notebook-dir="/nfs/"'
+        ports:
+          - containerPort: 8888
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: /nfs/
+            name: nfs-access
+        env:
+          - name: HOME
+            value: "/tmp"
+          - name: JUPYTER_CONFIG_DIR
+            value: "/tmp/jupyter/config"
+          - name: JUPYTER_DATA_DIR
+            value: "/tmp/jupyter/data"
+          - name: JUPYTER_RUNTIME_DIR
+            value: "/tmp/jupyter/runtime"
+      volumes:
+      - name: nfs-access
+        persistentVolumeClaim:
+          # TODO: update this value to match your volume claim name, typically
+          # <username>vol1claim
+          claimName: sebastiansvol1claim
