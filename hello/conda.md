@@ -41,6 +41,8 @@ https://stackoverflow.com/questions/55185945/any-conda-or-pip-operation-give-ssl
 
 Install Github desktop app
 
+[Generate personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) for command line interactions with GitHub.
+
 # Jupyter
 
 Install jupyterlab. Open Anaconda prompt console, navigate to git repository and start jupyter-lab
