@@ -1,4 +1,4 @@
-# Conda
+# Python Setup
 
 ## Setup conda for jupyter notebook
 
@@ -37,11 +37,15 @@ conda create -n <env_name>
 https://stackoverflow.com/questions/55185945/any-conda-or-pip-operation-give-ssl-error-in-windows-10
 
 
-# Git
+# Github
 
 Install Github desktop app
 
 [Generate personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) for command line interactions with GitHub.
+
+# GitLab
+
+Add your machine's SSH key to SSH keys on GitLab to interact with its API without username/ password.
 
 # Jupyter
 
