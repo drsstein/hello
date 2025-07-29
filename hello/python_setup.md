@@ -45,7 +45,7 @@ Install Github desktop app
 
 # GitLab
 
-Add your machine's SSH key to SSH keys on GitLab to interact with its API without username/ password.
+Follow instructions in [gitlab.md](gitlab.md).
 
 # Jupyter
 
